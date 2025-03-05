@@ -1,0 +1,115 @@
+﻿@model Restaurant.ViewModels.HomeModel
+
+@{
+    ViewData["Title"] = "Menu";
+    Layout = "_Layout1";
+
+}
+<div class="breadcrumb-area bg-img ptb-80" style="background-image:url(/assets/img/banner/breath.jpg);">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <h3>menu</h3>
+            <ul>
+                <li>
+                    <a asp-action="index" asp-controller="Home">Home</a>
+                </li>
+                <li class="active">menu page </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@* /////////// *@
+<div class="product-menu-area pt-100 pb-70 gray-bg">
+    <div class="container">
+        <div class="section-title text-center mb-50">
+            <h2>Our Food Menu</h2>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim nostrud exercitation ullamco laboris nisi.</p>
+        </div>
+        <div class="menu-tab-wrap mb-50">
+            <div class="menu-tab-list nav text-center">
+                <a class="active" href="#All_item" data-bs-toggle="tab">
+                    All item
+                </a>
+                @foreach (var item in Model.MasterCategoryMenu.Take(5).ToList()) 
+                {
+                    <a href="#@item.MasterCategoryMenuName" data-bs-toggle="tab">
+                        @item.MasterCategoryMenuName 
+                    </a> 
+                }           
+            </div>
+        </div>
+        <div class="tab-content jump">
+            <div id="All_item" class="tab-pane active">
+                <div class="row">
+                    @foreach (var item in Model.MasterItemMenu.Where(x=>x.MasterCategoryMenuId!=6))
+                    {
+                        <div class="col-lg-6">
+                            <div class="single-menu-product mb-30">
+                                <div class="menu-product-img">
+                                    <img alt="" src="~/Admin/Images/ItemMenu/@item.MasterItemMenuImageUrl">
+                                </div>
+                                <div class="menu-product-content">
+                                    <div class="menu-title-price">
+                                        <div class="menu-title">
+                                            <h4>
+                                                @item.MasterItemMenuTitle
+                                            </h4>
+                                        </div>
+                                        <div class="menu-price">
+                                            <span> $@item.MasterItemMenuPrice</span>
+                                        </div>
+                                    </div>
+                                    <p> @item.MasterItemMenuDesc</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @foreach (var category in Model.MasterCategoryMenu.Take(5).ToList())
+            {
+                <div id="@category.MasterCategoryMenuName" class="tab-pane">
+                     <div class="row">
+                        @foreach (var item in Model.MasterItemMenu.Where(x => x.MasterCategoryMenu.MasterCategoryMenuName.Equals(@category.MasterCategoryMenuName)))
+                        {
+                        <div class="col-lg-6">
+                            <div class="single-menu-product mb-30">
+                                <div class="menu-product-img">
+                                    <img alt="" src="~/Admin/Images/ItemMenu/@item.MasterItemMenuImageUrl">
+                                </div>
+                                <div class="menu-product-content">
+                                    <div class="menu-title-price">
+                                        <div class="menu-title">
+                                            <h4>
+                                               @item.MasterItemMenuTitle
+                                            </h4>
+                                        </div>
+                                        <div class="menu-price">
+                                            <span> $@item.MasterItemMenuPrice</span>
+                                        </div>
+                                    </div>
+                                    <p> @item.MasterItemMenuDesc</p>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div> 
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@* /////////// *@
+<div class="brand-logo-area ptb-100">
+    <div class="container">
+        <div class="brand-logo-active owl-carousel">
+            @foreach (var item in Model.MasterPartner)
+            {
+                <div class="single-brand-logo">
+                    <img alt="" src="~/Admin/Images/Partner/@item.MasterPartnerLogoImageUrl">
+                </div>
+            }
+        </div>
+    </div>
+</div>

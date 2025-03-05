@@ -1,0 +1,72 @@
+﻿@model Restaurant.ViewModels.MasterContactUsInformationModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="pagetitle">
+    <h1>Menu</h1>
+    <hr />
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterContactUsInformation">Manage  ContactUs Information</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <br />
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="MasterContactUsInformationIdesc" class="col-sm-4 col-form-label bold"></label>
+                                <div class="col-sm-8">
+                                    <input asp-for="MasterContactUsInformationIdesc" class="form-control" />
+                                    <span asp-validation-for="MasterContactUsInformationIdesc" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="MasterContactUsInformationRedirect" class="col-sm-4 col-form-label bold"></label>
+                                <div class="col-sm-8">
+                                    <input asp-for="MasterContactUsInformationRedirect" class="form-control" />
+                                    <span asp-validation-for="MasterContactUsInformationRedirect" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="MasterContactUsInformationImageUrl" />
+                            @*  <img src="~/Admin/Images/Offers/@Model.MasterOfferImageUrl" style="max-width:35px" /> *@
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="MasterContactUsInformationImageUrl" class="col-sm-4 col-form-label bold"></label>
+                                <div class="col-sm-8">
+                                    <input asp-for="File" class="form-control" />
+                                    <span asp-validation-for="File" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group text-end mt-3" style="direction:rtl;">
+                            <input type="submit" value="Edit" class="btn btn-primary" />
+                            <a asp-action="Index" class="btn btn-dark">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
